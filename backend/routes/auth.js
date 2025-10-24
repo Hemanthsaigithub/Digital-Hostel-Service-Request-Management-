@@ -14,14 +14,14 @@ router.post("/signup", async (req, res) => {
   return res.status(400).json({ message: "Name, email, and password are required" });
 }
   // Email validation (must end with @gmail.com)
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    const emailRegex = /^([a-zA-Z0-9._%+-]+@gmail\.com|[a-zA-Z0-9]+@student\.nitw\.ac\.in)$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ message: "Email must be a valid @gmail.com address" });
     }
 
     // Roll number validation (e.g., 2 digits + 3 letters + 1 letter + 2 digits)
     if (rollNo) {
-      const rollNoRegex = /^[0-9]{2}[a-zA-Z]{3}[0-9a-zA-Z]{3}$/; // adjust pattern as needed
+      const rollNoRegex = /^[0-9]{2}[a-zA-Z]{3}[0-9]{1}[0-9a-zA-Z]{3}$/; // adjust pattern as needed
       if (!rollNoRegex.test(rollNo)) {
         return res.status(400).json({ message: "Roll number is invalid. Format: 23CSB0B26" });
       }

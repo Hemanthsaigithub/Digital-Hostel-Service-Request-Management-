@@ -35,34 +35,37 @@ async function seedAdminStaff() {
   try {
     const adminExists = await User.findOne({ role: "admin" });
     if (!adminExists) {
-      const hash = await bcrypt.hash("admin123", 10);
+      const hash = await bcrypt.hash("admin@123", 10);
       await User.create({
         name: "Hostel Admin",
-        email: "admin@hostel.com",
-        passwordHash: hash,
+        email: "admin@gmail.com",
+        password: hash,
         role: "admin",
       });
-      console.log("✅ Default admin created (admin@hostel.com / admin123)");
+      console.log("✅ Default admin created (admin@gmail.com / admin@123)");
     }
 
     const staffTypes = [
-      { name: "Electrician Staff", email: "electrician@hostel.com", staffType: "electrician" },
-      { name: "Plumber Staff", email: "plumber@hostel.com", staffType: "plumber" },
-      { name: "Carpenter Staff", email: "carpenter@hostel.com", staffType: "carpenter" },
+      { name: "Electrician-1", email: "electrician1@gmail.com", staffType: "electrician" },
+      { name: "Electrician-2", email: "electrician2@gmail.com", staffType: "electrician" },
+      { name: "Plumber-1", email: "plumber1@gmail.com", staffType: "plumber" },
+      { name: "Plumber-2", email: "plumber2@gmail.com", staffType: "plumber" },
+      { name: "Carpenter-1", email: "carpenter1@gmail.com", staffType: "carpenter" },
+      { name: "Carpenter-2", email: "carpenter2@gmail.com", staffType: "carpenter" },
     ];
 
     for (let staff of staffTypes) {
       const exists = await User.findOne({ email: staff.email });
       if (!exists) {
-        const hash = await bcrypt.hash("staff123", 10);
+        const hash = await bcrypt.hash("staff@123", 10);
         await User.create({
           name: staff.name,
           email: staff.email,
-          passwordHash: hash,
+          password: hash,
           role: "staff",
           staffType: staff.staffType,
         });
-        console.log(`✅ Default staff created (${staff.email} / staff123)`);
+        console.log(`✅ Default staff created (${staff.email} / staff@123)`);
       }
     }
   } catch (err) {

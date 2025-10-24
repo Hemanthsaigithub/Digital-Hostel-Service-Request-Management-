@@ -36,6 +36,13 @@ const seedUsers = async () => {
         role: "staff",
         staffType: "carpenter",
       },
+      {
+        name: "Carpenter Staff 2",
+        email: "carpenter2@hostel.com",
+        password: await bcrypt.hash("staff123", 10),
+        role: "staff",
+        staffType: "carpenter",
+      },
     ];
 
     for (const u of users) {
